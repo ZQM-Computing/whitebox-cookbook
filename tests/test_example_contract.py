@@ -67,6 +67,20 @@ class WhiteboxExampleContractTests(unittest.TestCase):
         self.assertIn("12 points", result.stdout)
         self.assertIn("classes", result.stdout)
 
+
+    def test_all_runners_share_the_binary_override_and_cli_basics_only_requests_help(self):
+        for relative in (
+            "examples/01-cli-basics/run.sh",
+            "examples/02-terrain/run.sh",
+            "examples/03-hydro/run.sh",
+            "examples/04-lidar-tools/run.sh",
+        ):
+            script = (ROOT / relative).read_text(encoding="utf-8")
+            self.assertIn('WBT="${WHITEBOX_TOOLS_BIN:-whitebox_tools}"', script)
+        cli = (EXAMPLE / "run.sh").read_text(encoding="utf-8")
+        self.assertIn('"$WBT" --toolhelp=Slope', cli)
+        self.assertNotIn('--run=Slope --help', cli)
+
     def test_script_captures_version_and_tool_inventory(self):
         script = (EXAMPLE / "inspect-cli.sh").read_text(encoding="utf-8")
         self.assertIn('"${WHITEBOX_TOOLS_BIN:-whitebox_tools}"', script)

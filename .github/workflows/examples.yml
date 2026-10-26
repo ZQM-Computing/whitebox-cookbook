@@ -1,0 +1,24 @@
+name: Example contracts
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile tests
+        run: python -m compileall -q tests
+      - name: Run example contracts
+        run: python -m unittest discover -s tests -v
+      - name: Validate shell syntax
+        run: bash -n examples/01-cli-basics/inspect-cli.sh

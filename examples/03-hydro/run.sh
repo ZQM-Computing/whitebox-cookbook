@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
-# 03-hydro: fill, flow direction, flow accumulation, watershed extraction.
-# Set WHITEBOX_TOOLS to the full binary path if it is not on PATH.
-# Rows/columns in the notes are 0-based; the outlet is row 5, column 9
-# (middle row, east edge).
+# 03-hydro: fill, flow direction, accumulation, and watershed extraction.
+# Outlet is the center of row 5, column 9 (0-based from the north-west).
 set -euo pipefail
+
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WBT="${WHITEBOX_TOOLS:-whitebox_tools}"
-python3 gen_dem.py dem.asc
-"$WBT" --run=FillDepressions --dem=dem.asc --output=dem_filled.asc
-python3 check_fill.py dem.asc dem_filled.asc
-"$WBT" --run=D8Pointer --dem=dem_filled.asc --output=d8pntr.asc
-"$WBT" --run=D8FlowAccum --pntr=d8pntr.asc --output=d8acc.asc
-"$WBT" --run=Watershed --d8_pntr=d8pntr.asc --pour_pts=outlet.shp --output=basin.asc
-echo "Outputs: dem_filled.asc d8pntr.asc d8acc.asc basin.asc (each 10x10)"
+OUT_DIR="${1:-$DIR/build}"
+mkdir -p "$OUT_DIR"
+
+python3 "$DIR/gen_dem.py" "$OUT_DIR/dem.asc"
+python3 "$DIR/gen_outlet.py" "$OUT_DIR/outlet"
+"$WBT" --run=FillDepressions --dem="$OUT_DIR/dem.asc" --output="$OUT_DIR/dem_filled.asc"
+python3 "$DIR/check_fill.py" "$OUT_DIR/dem.asc" "$OUT_DIR/dem_filled.asc"
+"$WBT" --run=D8Pointer --dem="$OUT_DIR/dem_filled.asc" --output="$OUT_DIR/d8pntr.tif"
+"$WBT" --run=D8FlowAccum --pntr="$OUT_DIR/d8pntr.tif" --output="$OUT_DIR/d8acc.tif"
+"$WBT" --run=Watershed --d8_pntr="$OUT_DIR/d8pntr.tif" --pour_pts="$OUT_DIR/outlet.shp" --output="$OUT_DIR/basin.tif"
+echo "Outputs written to $OUT_DIR: dem_filled.asc d8pntr.tif d8acc.tif basin.tif"

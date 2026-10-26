@@ -15,7 +15,7 @@ A **WhiteboxTools cookbook** for terrain, hydrology, and LiDAR analysis from the
 
 ## Repository role and status
 
-**Status:** Active, public. First pattern pass written (design-only, gate 1 target — none runtime-validated on the fleet yet).
+**Status:** Active, public. Four example directories exist; CI currently contracts the CLI-inspection pattern, while terrain, hydrology, and LiDAR outputs remain unvalidated against the fleet WhiteboxTools 2.4.0 binary.
 
 **What this repository is:** WhiteboxTools patterns — see the table below.
 
@@ -37,7 +37,7 @@ Geospatial engineers who want a fast, dependency-light CLI for terrain work.
 
 | # | Example | What it demonstrates | Status |
 |---|---------|----------------------|--------|
-| 01 | [examples/01-cli-basics](examples/01-cli-basics) | Running WhiteboxTools commands and reading tool help | Written (design-only) |
+| 01 | [examples/01-cli-basics](examples/01-cli-basics) | Running WhiteboxTools commands and reading tool help | Code + static contract; live CLI pending |
 | 02 | [examples/02-terrain](examples/02-terrain) | Slope, hillshade, and roughness from a DEM | Written (design-only) |
 | 03 | [examples/03-hydro](examples/03-hydro) | Depression filling, flow direction, and watershed extraction | Written (design-only) |
 | 04 | [examples/04-lidar-tools](examples/04-lidar-tools) | LiDAR point-cloud tools: filtering, gridding, and ground classification | Written (design-only) |
@@ -57,7 +57,8 @@ whitebox-cookbook/
 
 ## Roadmap
 
-- First pattern pass: all four table rows (this pass, design-only)
+- Code pass: all four example directories exist; the CLI-inspection script has a static contract.
+- Validation pass (gate 3): run each pattern against the fleet WhiteboxTools 2.4.0 binary and verify exact parameters and generated outputs.
 - Validation pass (gate 3): run each pattern against the fleet WhiteboxTools 2.4.0 binary; confirm CLI flag spellings, tool parameter names, and all stated expected values
 
 ## Contributing

@@ -1,0 +1,16 @@
+# Generated outputs from the cookbook runners
+examples/*/build/
+examples/*/dem.asc
+examples/*/dem_filled.asc
+examples/*/slope.tif
+examples/*/hillshade.tif
+examples/*/roughness.tif
+examples/*/d8pntr.tif
+examples/*/d8acc.tif
+examples/*/basin.tif
+examples/*/outlet.shp
+examples/*/outlet.shx
+examples/*/outlet.dbf
+examples/*/sample.las
+examples/*/lidar_dem.tif
+examples/*/whitebox-tools.txt

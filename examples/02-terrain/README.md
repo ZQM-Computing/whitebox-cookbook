@@ -12,12 +12,12 @@ east-sloping plane — no real terrain, no real place.
 ## Run
 
 ```bash
-bash run.sh
+bash run.sh  # optional output directory: bash run.sh /path/to/output
 ```
 
 ## Expected output
 
-All three outputs are 10x10, matching `dem.asc`:
+All three outputs are written to `build/` by default (or the directory passed as the first argument) and should be 10x10, matching `dem.asc`:
 
 - `slope.tif`: interior cells ≈ 1.91 degrees. Derivation: eastward
   gradient 1/30, slope = atan(1/30) = 1.909 degrees. Edge cells may

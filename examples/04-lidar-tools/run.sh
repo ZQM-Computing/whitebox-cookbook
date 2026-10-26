@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
-# 04-lidar-tools: LiDAR info and gridding from the synthetic LAS file.
-# Set WHITEBOX_TOOLS to the full binary path if it is not on PATH.
+# 04-lidar-tools: validate a synthetic LAS file, inspect it, and grid it.
 set -euo pipefail
+
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WBT="${WHITEBOX_TOOLS:-whitebox_tools}"
-python3 gen_las.py sample.las
-python3 check_las.py sample.las
-"$WBT" --run=LidarInfo --input=sample.las
-"$WBT" --run=LidarTinGridding --input=sample.las --output=lidar_dem.tif
-echo "Outputs: sample.las (12 points), lidar_dem.tif"
+OUT_DIR="${1:-$DIR/build}"
+mkdir -p "$OUT_DIR"
+
+python3 "$DIR/gen_las.py" "$OUT_DIR/sample.las"
+python3 "$DIR/check_las.py" "$OUT_DIR/sample.las"
+"$WBT" --run=LidarInfo --input="$OUT_DIR/sample.las"
+"$WBT" --run=LidarTinGridding --input="$OUT_DIR/sample.las" --output="$OUT_DIR/lidar_dem.tif"
+echo "Outputs written to $OUT_DIR: sample.las lidar_dem.tif"

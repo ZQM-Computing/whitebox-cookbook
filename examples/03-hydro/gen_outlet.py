@@ -33,7 +33,7 @@ def write_shapefile(prefix: Path) -> None:
     # dBASE III table: one numeric ID field, one record.
     header_length, record_length = 65, 5
     dbf_header = struct.pack("<BBBBIHH20x", 3, 126, 10, 26, 1, header_length, record_length)
-    field = b"ID\x00\x00\x00\x00\x00\x00\x00\x00N" + b"\x00\x00\x00\x00" + bytes((4, 0)) + b"\x00" * 14
+    field = b"ID\x00\x00\x00\x00\x00\x00\x00\x00\x00N" + b"\x00\x00\x00\x00" + bytes((4, 0)) + b"\x00" * 14
     if len(field) != 32:
         raise AssertionError(f"DBF field descriptor must be 32 bytes, got {len(field)}")
     (prefix.with_suffix(".dbf")).write_bytes(dbf_header + field + b"\r" + b" " + b"   1" + b"\x1a")

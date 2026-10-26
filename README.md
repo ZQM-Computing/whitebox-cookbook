@@ -15,7 +15,7 @@ A **WhiteboxTools cookbook** for terrain, hydrology, and LiDAR analysis from the
 
 ## Repository role and status
 
-**Status:** Active, public — first CLI-inspection pattern written. CI validates the script and documentation; runtime tool availability must be checked on the target host.
+**Status:** Active, public. First pattern pass written (design-only, gate 1 target — none runtime-validated on the fleet yet).
 
 **What this repository is:** WhiteboxTools patterns — see the table below.
 
@@ -29,34 +29,36 @@ Geospatial engineers who want a fast, dependency-light CLI for terrain work.
 
 ## Prerequisites
 
-- WhiteboxTools 2.4.0
-- A DEM and, for the LiDAR pass, a sample LAS file
-- Bash
+- WhiteboxTools 2.4.0 (fleet record: Node-1 extract dir `C:\WhiteboxTools`; confirm the path on Node-3/Node-4 at validation)
+- A DEM and, for the LiDAR pass, a sample LAS file (both generated synthetically by the patterns)
+- Bash (on fleet Windows nodes, the same commands run in PowerShell with the fleet binary path)
 
 ## Patterns
 
-| # | Example | Status | What it demonstrates |
-|---|---------|--------|---------------------|
-| 01 | [01-cli-basics](examples/01-cli-basics/README.md) | Written; runtime check pending | Capture installed version and available-tool list |
-| 02 | `02-terrain` | Slope, hillshade, and roughness from a DEM |
-| 03 | `03-hydro` | Depression filling, flow direction, and watershed extraction |
-| 04 | `04-lidar-tools` | LiDAR point-cloud tools: filtering, gridding, and ground classification |
+| # | Example | What it demonstrates | Status |
+|---|---------|----------------------|--------|
+| 01 | [examples/01-cli-basics](examples/01-cli-basics) | Running WhiteboxTools commands and reading tool help | Written (design-only) |
+| 02 | [examples/02-terrain](examples/02-terrain) | Slope, hillshade, and roughness from a DEM | Written (design-only) |
+| 03 | [examples/03-hydro](examples/03-hydro) | Depression filling, flow direction, and watershed extraction | Written (design-only) |
+| 04 | [examples/04-lidar-tools](examples/04-lidar-tools) | LiDAR point-cloud tools: filtering, gridding, and ground classification | Written (design-only) |
 
 ## Repository layout
 
 ```text
 whitebox-cookbook/
-├── examples/01-cli-basics/  # CLI version/tool inventory script
-├── tests/             # static example contracts
-├── .github/workflows/ # CI
+├── examples/
+│   ├── 01-cli-basics/
+│   ├── 02-terrain/
+│   ├── 03-hydro/
+│   └── 04-lidar-tools/
 ├── README.md
 └── LICENSE
 ```
 
 ## Roadmap
 
-- Add a synthetic DEM terrain pattern that asserts the expected output raster exists and has valid metadata.
-- Add hydrology and LiDAR patterns only after the installed tool names, parameters, and output semantics are verified against WhiteboxTools 2.4.0.
+- First pattern pass: all four table rows (this pass, design-only)
+- Validation pass (gate 3): run each pattern against the fleet WhiteboxTools 2.4.0 binary; confirm CLI flag spellings, tool parameter names, and all stated expected values
 
 ## Contributing
 

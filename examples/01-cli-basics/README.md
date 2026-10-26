@@ -1,20 +1,37 @@
-# Inspect the WhiteboxTools CLI
+# 01 — CLI basics
 
-This pattern verifies that the WhiteboxTools executable is reachable, captures its version, and saves the available-tool listing. It does not run terrain or LiDAR processing; those examples must validate their input datasets and output artifacts separately.
-
-## Prerequisites
-
-- WhiteboxTools 2.4.0 or compatible
-- Bash and the WhiteboxTools executable on `PATH`, or set `WHITEBOX_TOOLS_BIN` to its full path
+Run WhiteboxTools, confirm the version, read the tool list, and read one
+tool's help. This is the smoke test every later pattern assumes.
 
 ## Run
 
 ```bash
-bash examples/01-cli-basics/inspect-cli.sh build/whitebox-tools.txt
+bash run.sh
 ```
 
-The output records the version and tool list. Review it when troubleshooting differences between hosts; do not assume every installation exposes identical tools or parameters.
+On fleet Windows nodes, run the same three commands in PowerShell with
+the fleet binary on PATH, or set `WHITEBOX_TOOLS` to the full binary
+path (Node-1 documented extract dir: `C:\WhiteboxTools`).
 
-## Validation boundary
+## Expected output
 
-CI checks the script and documentation contract, plus Bash syntax. It does not install WhiteboxTools or certify the installed runtime; execute this pattern on the target machine for that.
+- `--version` reports WhiteboxTools 2.4.0 (the fleet-recorded version;
+  Node-1's `--version` run is the fleet evidence).
+- `--help` lists the available tools.
+- The per-tool help form prints Slope's parameters.
+
+## Failure behavior
+
+- Binary not on PATH: the script fails immediately with
+  `whitebox_tools: command not found` (or the Windows equivalent) —
+  fix PATH or set `WHITEBOX_TOOLS`, do not guess at a binary location.
+- Unknown tool name: the tool errors instead of producing output;
+  re-check the name against `--help`.
+
+## Versions and evidence
+
+- Tool: WhiteboxTools 2.4.0, fleet-verified on all three Windows nodes.
+- Evidence level: design-only (gate 1 target). The `--version` form is
+  fleet-proven; the `--help` and per-tool help spellings follow the
+  documented 2.4.0 CLI and are **to confirm at validation** against the
+  fleet binary's own `--help` output.

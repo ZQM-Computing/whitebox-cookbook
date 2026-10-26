@@ -15,7 +15,7 @@ A **WhiteboxTools cookbook** for terrain, hydrology, and LiDAR analysis from the
 
 ## Repository role and status
 
-**Status:** Active, public — seeding. Pattern passes land in follow-up work from fleet-verified setups; the tables below list what is planned, not what is already written.
+**Status:** Active, public — first CLI-inspection pattern written. CI validates the script and documentation; runtime tool availability must be checked on the target host.
 
 **What this repository is:** WhiteboxTools patterns — see the table below.
 
@@ -33,11 +33,11 @@ Geospatial engineers who want a fast, dependency-light CLI for terrain work.
 - A DEM and, for the LiDAR pass, a sample LAS file
 - Bash
 
-## Patterns (planned)
+## Patterns
 
-| # | Example | What it will demonstrate |
-|---|---------|--------------------------|
-| 01 | `01-cli-basics` | Running WhiteboxTools commands and reading tool help |
+| # | Example | Status | What it demonstrates |
+|---|---------|--------|---------------------|
+| 01 | [01-cli-basics](examples/01-cli-basics/README.md) | Written; runtime check pending | Capture installed version and available-tool list |
 | 02 | `02-terrain` | Slope, hillshade, and roughness from a DEM |
 | 03 | `03-hydro` | Depression filling, flow direction, and watershed extraction |
 | 04 | `04-lidar-tools` | LiDAR point-cloud tools: filtering, gridding, and ground classification |
@@ -46,15 +46,17 @@ Geospatial engineers who want a fast, dependency-light CLI for terrain work.
 
 ```text
 whitebox-cookbook/
-├── examples/          # pattern passes, landing in follow-up work
+├── examples/01-cli-basics/  # CLI version/tool inventory script
+├── tests/             # static example contracts
+├── .github/workflows/ # CI
 ├── README.md
 └── LICENSE
 ```
 
 ## Roadmap
 
-- First pattern pass: the first two table rows
-- Second pass: the remaining rows, from fleet-verified setups
+- Add a synthetic DEM terrain pattern that asserts the expected output raster exists and has valid metadata.
+- Add hydrology and LiDAR patterns only after the installed tool names, parameters, and output semantics are verified against WhiteboxTools 2.4.0.
 
 ## Contributing
 

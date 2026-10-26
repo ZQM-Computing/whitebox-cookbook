@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-output_path="${1:-build/whitebox-tools.txt}"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+output_path="${1:-$DIR/build/whitebox-tools.txt}"
 bin="${WHITEBOX_TOOLS_BIN:-whitebox_tools}"
 if ! command -v "$bin" >/dev/null 2>&1 && [[ ! -x "$bin" ]]; then
   echo "ERROR: WhiteboxTools executable not found: $bin" >&2

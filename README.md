@@ -31,7 +31,7 @@ Geospatial engineers who want a fast, dependency-light CLI for terrain work.
 
 - WhiteboxTools 2.4.0 (fleet record: Node-1 extract dir `C:\WhiteboxTools`; confirm the path on Node-3/Node-4 at validation)
 - A DEM and, for the LiDAR pass, a sample LAS file (both generated synthetically by the patterns)
-- Bash (on fleet Windows nodes, the same commands run in PowerShell with the fleet binary path)
+- Bash (on fleet Windows nodes, the same commands run in PowerShell with the fleet binary path; set `WHITEBOX_TOOLS_BIN` consistently for all runners)
 
 ## Patterns
 

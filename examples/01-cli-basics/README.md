@@ -13,7 +13,7 @@ input datasets and output artifacts separately.
 - WhiteboxTools 2.4.0 or compatible
 - Bash and the WhiteboxTools executable on `PATH`, or set
   `WHITEBOX_TOOLS_BIN` to its full path (`run.sh` below accepts
-  `WHITEBOX_TOOLS` instead)
+  `WHITEBOX_TOOLS_BIN` instead)
 
 ## Run
 
@@ -39,14 +39,14 @@ or parameters.
   Node-1's `--version` run is the fleet evidence).
 - `--help` lists the available tools; `--listtools` (used by
   `inspect-cli.sh`) captures the same inventory to a file.
-- The per-tool help form prints Slope's parameters.
+- The `--toolhelp=Slope` form requests Slope's parameter help without attempting to execute the tool.
 
 ## Failure behavior
 
 - Binary not on PATH: the scripts fail immediately (`run.sh` with
   `command not found`; `inspect-cli.sh` with exit 127 and
   `ERROR: WhiteboxTools executable not found`) — fix PATH or set
-  `WHITEBOX_TOOLS` / `WHITEBOX_TOOLS_BIN`, do not guess at a binary
+  `WHITEBOX_TOOLS_BIN` / `WHITEBOX_TOOLS_BIN`, do not guess at a binary
   location.
 - Unknown tool name: the tool errors instead of producing output;
   re-check the name against `--help`.

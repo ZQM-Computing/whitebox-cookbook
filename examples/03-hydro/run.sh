@@ -4,7 +4,7 @@
 set -euo pipefail
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WBT="${WHITEBOX_TOOLS:-whitebox_tools}"
+WBT="${WHITEBOX_TOOLS_BIN:-whitebox_tools}"
 OUT_DIR="${1:-$DIR/build}"
 mkdir -p "$OUT_DIR"
 

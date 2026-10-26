@@ -15,7 +15,7 @@ A **WhiteboxTools cookbook** for terrain, hydrology, and LiDAR analysis from the
 
 ## Repository role and status
 
-**Status:** Active, public. Four example directories exist; CI currently contracts the CLI-inspection pattern, while terrain, hydrology, and LiDAR outputs remain unvalidated against the fleet WhiteboxTools 2.4.0 binary.
+**Status:** Active, public. Four example patterns are present. CI now validates all Python/shell syntax, the synthetic LAS contract, and the generated hydrology outlet shapefile. Terrain, hydrology, and LiDAR processing outputs still require validation against the fleet WhiteboxTools 2.4.0 binary.
 
 **What this repository is:** WhiteboxTools patterns — see the table below.
 
@@ -38,8 +38,8 @@ Geospatial engineers who want a fast, dependency-light CLI for terrain work.
 | # | Example | What it demonstrates | Status |
 |---|---------|----------------------|--------|
 | 01 | [examples/01-cli-basics](examples/01-cli-basics) | Running WhiteboxTools commands and reading tool help | Code + static contract; live CLI pending |
-| 02 | [examples/02-terrain](examples/02-terrain) | Slope, hillshade, and roughness from a DEM | Written (design-only) |
-| 03 | [examples/03-hydro](examples/03-hydro) | Depression filling, flow direction, and watershed extraction | Written (design-only) |
+| 02 | [examples/02-terrain](examples/02-terrain) | Slope, hillshade, and roughness from a DEM | Synthetic fixture; runtime pending |
+| 03 | [examples/03-hydro](examples/03-hydro) | Depression filling, flow direction, and watershed extraction | Outlet fixture added; runtime pending |
 | 04 | [examples/04-lidar-tools](examples/04-lidar-tools) | LiDAR point-cloud tools: filtering, gridding, and ground classification | Written (design-only) |
 
 ## Repository layout

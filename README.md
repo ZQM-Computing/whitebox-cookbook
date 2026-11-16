@@ -11,7 +11,7 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-A **WhiteboxTools cookbook** for terrain, hydrology, and LiDAR analysis from the command line. Patterns are drawn from the ZQM fleet's WhiteboxTools 2.4.0 installs on all three Windows nodes. It is intended for Geospatial engineers who want a fast, dependency-light CLI for terrain work. Validate each pattern against your own data, software versions, and operating environment before adopting it.
+A **WhiteboxTools cookbook** for terrain, hydrology, and LiDAR analysis from the command line. Patterns are drawn from the ZQM fleet's WhiteboxTools 2.4.0 installs on all three Windows nodes (as of Oct 2026; verify against the current fleet). It is intended for Geospatial engineers who want a fast, dependency-light CLI for terrain work. Validate each pattern against your own data, software versions, and operating environment before adopting it.
 
 ## Repository role and status
 
